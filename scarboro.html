@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scarboro</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+      overflow: hidden;
+      position: relative;
+      background: black;
+    }
+
+    /* Background image layer */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('images/scarboro_bg.jpg'); /* Replace with your image path */
+      background-size: cover;
+      background-position: center;
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    /* Left-side menu layer */
+    .menu {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 10; /* Make sure menu is above background */
+      gap: 1rem;
+    }
+
+    /* Menu links styled like play button */
+    .menu a {
+      display: inline-block;
+      background-color: black;
+      color: #eaff00; /* bright yellow */
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+      text-decoration: none;
+      padding: 15px 50px;
+      border: 3px solid #eaff00;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #eaff00aa;
+      cursor: pointer;
+      letter-spacing: 4px;
+      user-select: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    }
+
+    .menu a:hover,
+    .menu a:focus {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px #eaff00ff;
+      color: #fff;
+      outline: none;
+    }
+
+    /* Centered play/pause button as text box */
+    #play-pause-btn {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: black;
+      color: #eaff00; /* bright yellow */
+      font-size: 2.5rem;
+      font-weight: bold;
+      border: 3px solid #eaff00;
+      padding: 15px 50px;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #eaff00aa;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 10;
+      user-select: none;
+      text-align: center;
+      letter-spacing: 4px;
+      font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+    }
+
+    #play-pause-btn:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 30px #eaff00ff;
+    }
+
+    #play-pause-btn:focus {
+      outline: none;
+      box-shadow: 0 0 35px #eaff00ff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background"></div>
+
+  <nav class="menu">
+    <a href="abouts.html">ABOUT</a>
+    <a href="musics.html">MUSIC</a>
+    <a href="shows.html">SHOWS</a>
+    <a href="merch.html">MERCH</a>
+  </nav>
+
+  <!-- Hidden audio -->
+  <audio id="bg-music" loop>
+    <source src="music/hate season.wav" type="audio/wav" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Custom play/pause button -->
+  <button id="play-pause-btn" aria-label="Play Music" title="Play Music">WE DARE YOU</button>
+
+  <script>
+    const audio = document.getElementById('bg-music');
+    const btn = document.getElementById('play-pause-btn');
+
+    // Start paused
+    audio.pause();
+
+    btn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = 'PAUSE';
+        btn.title = 'Pause Music';
+      } else {
+        audio.pause();
+        btn.textContent = 'Go on then';
+        btn.title = 'Play Music';
+      }
+    });
+  </script>
+
+</body>
+</html>

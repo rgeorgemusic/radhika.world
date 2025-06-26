@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shows - Scarboro</title>
+  <style>
+    /* Ensure full height and no scrollbars */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+      color: #eaff00;
+    }
+
+    /* Background video styling */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* Main content container */
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 2rem;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-item {
+      max-width: 250px;
+      flex: 1 1 250px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      border: 3px solid #eaff00;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #eaff00aa;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .caption {
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    a.back-link {
+      display: inline-block;
+      margin-top: 3rem;
+      color: #eaff00;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border: 2px solid #eaff00;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    a.back-link:hover {
+      background-color: #eaff00;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background video -->
+  <video class="background-video" autoplay muted loop playsinline>
+    <source src="videos/scarboro.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Page content -->
+  <div class="content">
+    <h1>Upcoming Shows</h1>
+
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="images/punksylvania.jpg" alt="Camp Punksylvania">
+        <div class="caption">June 20th - 22nd, 2025 — Gilbert, PA</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/getdead.JPG" alt="The Woodhshop">
+        <div class="caption">June 30, 2025 — Brooklyn, NYC</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/gutter.jpg" alt="The Gutter">
+        <div class="caption">July 13, 2025 — Brooklyn, NYC</div>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="images/outsider.jpg" alt="Outsider Magazine Festival">
+        <div class="caption">July 19, 2025 — Chester, Kansas City</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/show5.jpg" alt="Show 5">
+        <div class="caption">October 12, 2025 — Night Owl, Toronto</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/show6.jpg" alt="Show 6">
+        <div class="caption">November 3, 2025 — The Vault, Boston</div>
+      </div>
+    </div>
+
+    <a class="back-link" href="scarboro.html">← Back to Scarboro</a>
+  </div>
+
+</body>
+</html>

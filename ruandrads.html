@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ru and Rads</title>
+  <style>
+    /* Body and html to fill the viewport */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Georgia, 'Times New Roman', serif;
+      overflow: hidden;
+    }
+
+    /* Background image fills entire viewport */
+    body {
+      background-image: url('images/ruandrads_cover.jpeg'); /* Replace with your image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      height: 100vh;
+    }
+
+    /* Right-side menu container */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      right: 0;         /* Changed from left to right */
+      width: 180px;
+      height: 100vh;
+      background-color: #ffffff; /* Pure white */
+      box-shadow: -3px 0 10px rgba(0,0,0,0.2); /* Shadow on left side */
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+
+    /* Menu links */
+    .side-menu a {
+      color: #222;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .side-menu a:hover,
+    .side-menu a:focus {
+      color: #007acc;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="side-menu">
+    <a href="aboutrr.html">About</a>
+    <a href="showsrr.html">Shows</a>
+    <a href="musicrr.html">Music</a>
+    <a href="#merch">Merch</a>
+  </nav>
+
+</body>
+</html>

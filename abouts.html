@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Scarboro</title>
+
+  <!-- Gritty font -->
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Staatliches', Impact, sans-serif;
+      color: #eaff00;
+    }
+
+    body {
+      background-image: url('images/scarboro_banner.jpg'); /* Replace with your image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    /* Overlay to darken image slightly */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    /* Text container at bottom */
+    .about-text {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.5rem;
+      line-height: 2.2rem;
+      font-style: italic;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .about-text {
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <div class="about-text">
+    SCARBORO is the sound of NYC punk — gritty, relentless, and real. Born in the boroughs and forged in basement shows, Scarboro brings high-octane riffs and raw lyrics that speak truth in a world full of noise. With roots in classic hardcore and the heart of DIY, their live shows are a punch to the chest and a rallying cry for the disillusioned. This isn't polished, it's purpose. This is Scarboro.
+  </div>
+
+</body>
+</html>

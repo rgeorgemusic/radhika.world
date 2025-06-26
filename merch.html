@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merch - Scarboro</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: black;
+      color: #eaff00;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: nowrap;
+    }
+
+    .radhika-logo, .scarboro-logo {
+      height: 60px; /* Increased size */
+      object-fit: contain;
+      display: block;
+    }
+
+    .header-x {
+      color: #eaff00;
+      font-size: 2.5rem;
+      font-weight: bold;
+      user-select: none;
+      line-height: 1;
+      margin: 0 0.5rem;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    /* Merch Grid */
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .merch-item {
+      background-color: #111;
+      border: 2px solid #eaff00;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .merch-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px #eaff00aa;
+    }
+
+    .merch-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      text-align: center;
+      padding: 1rem;
+      font-weight: bold;
+      font-size: 1rem;
+      font-family: 'Georgia', serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <img src="images/radhika_logo.png" alt="Radhika.co.in Logo" class="radhika-logo" />
+    <div class="header-x">×</div>
+    <img src="images/scarboro_logo.png" alt="Scarboro Logo" class="scarboro-logo" />
+  </div>
+
+  <!-- Merch Grid -->
+  <div class="merch-grid">
+    <!-- Merch Item Example -->
+    <div class="merch-item">
+      <img src="images/merch1.jpg" alt="Merch 1">
+      <div class="caption">Scarboro T-Shirt</div>
+    </div>
+
+    <div class="merch-item">
+      <img src="images/merch2.jpg" alt="Merch 2">
+      <div class="caption">Limited Edition Vinyl</div>
+    </div>
+
+    <div class="merch-item">
+      <img src="images/merch3.jpg" alt="Merch 3">
+      <div class="caption">Logo Hoodie</div>
+    </div>
+
+    <!-- Add more merch items here -->
+  </div>
+
+</body>
+</html>

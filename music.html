@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radhika.World | Music</title>
+  <style>
+    @keyframes glitch-anim {
+      0% { clip: rect(24px, 9999px, 90px, 0); transform: skew(0.3deg); }
+      10% { clip: rect(10px, 9999px, 50px, 0); transform: skew(0.8deg); }
+      20% { clip: rect(50px, 9999px, 140px, 0); transform: skew(0.1deg); }
+      30% { clip: rect(80px, 9999px, 120px, 0); transform: skew(0.5deg); }
+      40% { clip: rect(20px, 9999px, 100px, 0); transform: skew(0.6deg); }
+      50% { clip: rect(60px, 9999px, 150px, 0); transform: skew(0.2deg); }
+      60% { clip: rect(5px, 9999px, 80px, 0); transform: skew(0.4deg); }
+      70% { clip: rect(30px, 9999px, 130px, 0); transform: skew(0.7deg); }
+      80% { clip: rect(10px, 9999px, 90px, 0); transform: skew(0.9deg); }
+      90% { clip: rect(40px, 9999px, 110px, 0); transform: skew(0.3deg); }
+      100% { clip: rect(24px, 9999px, 90px, 0); transform: skew(0.5deg); }
+    }
+
+    body {
+      background-color: #f5e1b8;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      position: relative;
+    }
+
+    .glitch {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      position: absolute;
+      color: white;
+      text-transform: uppercase;
+      text-shadow: 0 0 1px white, 0 0 2px white, 0 0 5px white;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: "Radhika.World";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      font-weight: 900;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .glitch::before {
+      text-shadow: -2px 0 cyan;
+      animation: glitch-anim 2s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      text-shadow: 2px 0 magenta;
+      animation: glitch-anim 3s infinite linear alternate-reverse;
+    }
+
+    .image-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      width: 90vw;
+      max-width: 1400px;
+      gap: 2vw;
+      z-index: 10;
+    }
+
+    .image-container a {
+      display: flex;
+      justify-content: center;
+    }
+
+    .image-container img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .image-container a:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Glitch text -->
+  <div class="glitch" id="textTop">Radhika.World</div>
+  <div class="glitch" id="textBottom">Radhika.World</div>
+
+  <!-- Aligned image row -->
+  <div class="image-container">
+    <a href="scarboro.html">
+      <img src="images/Scarboro_logo.png" alt="Scarboro" />
+    </a>
+    <a href="ruandrads.html">
+      <img src="images/ruandrads.PNG" alt="Ruandrads" />
+    </a>
+    <a href="https://example.com/music3">
+      <img src="https://via.placeholder.com/400x400.png?text=Track+3" alt="Track 3" />
+    </a>
+  </div>
+
+  <script>
+    const topText = document.getElementById('textTop');
+    const bottomText = document.getElementById('textBottom');
+
+    let xTop = 0;
+    let xBottom = 0;
+    const speed = 2;
+    const padding = 20;
+
+    function animate() {
+      const maxX = window.innerWidth + topText.offsetWidth;
+
+      xTop += speed;
+      xBottom += speed;
+
+      if (xTop > maxX) xTop = -topText.offsetWidth;
+      if (xBottom > maxX) xBottom = -bottomText.offsetWidth;
+
+      topText.style.top = padding + 'px';
+      topText.style.left = xTop + 'px';
+
+      bottomText.style.bottom = padding + 'px';
+      bottomText.style.left = xBottom + 'px';
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+
+</body>
+</html>

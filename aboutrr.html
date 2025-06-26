@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Scarboro</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      color: #111;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 33vh;
+      background-image: url('images/rr1.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* White section containing everything below hero */
+    .white-section {
+      position: relative;
+      background-color: white;
+      padding: 4rem 2rem;
+      min-height: 67vh;
+      overflow: hidden;
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.8;
+      font-size: 1.2rem;
+      position: relative;
+      z-index: 1; /* Ensures text stays above background */
+    }
+
+    .about-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Garamond', 'Georgia', serif;
+      color: #333;
+    }
+
+    /* Floating widget images */
+    .floating-widget {
+      position: absolute;
+      width: 80px;
+      height: auto;
+      pointer-events: none;
+      z-index: 0; /* Behind text */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top banner image -->
+  <div class="hero-image"></div>
+
+  <!-- White section with moving widgets and content -->
+  <div class="white-section">
+    <!-- Floating widgets (moved outside of text area) -->
+    <img src="images/keyboard.png" alt="Nord Keyboard" class="floating-widget" id="keyboard">
+    <img src="images/drumkit.png" alt="Cocktail Drum Kit" class="floating-widget" id="drumkit">
+
+    <!-- Main content -->
+    <div class="about-content">
+      <h1>Ru and Rads</h1>
+      <h1>Sketches.23</h1>
+      <p>
+        Sketches.23 was recorded primarily in West Oakland and San Francisco in 2023. The project began as an open-ended experiment—an attempt to explore our own sound in a playful, intuitive way. 
+
+        The music is full of odd ideas, playful detours, and chaotic little moments. This project became a space to let our imaginations run wild. Shaped by our influences and our shared experiences of living far from home, the messiness and unpredictability of the tracks reflect the way we were feeling—uncertain, restless, but still searching for something meaningful.
+
+        We felt the urge to release these sketches because in a time of great uncertainty for both of our lives, the experience of playing and creating music together became a compass—something steady amidst the chaos.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function floatRandomly(id, containerSelector) {
+      const el = document.getElementById(id);
+      const container = document.querySelector(containerSelector);
+
+      function move() {
+        const maxX = container.clientWidth - el.clientWidth;
+        const maxY = container.clientHeight - el.clientHeight;
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+        el.style.transition = 'transform 3s ease-in-out';
+        el.style.transform = `translate(${newX}px, ${newY}px)`;
+      }
+
+      setInterval(move, 3000);
+    }
+
+    floatRandomly('keyboard', '.white-section');
+    floatRandomly('drumkit', '.white-section');
+  </script>
+
+</body>
+</html>

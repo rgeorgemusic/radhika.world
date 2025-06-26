@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Music - Scarboro</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    /* Fullscreen background video styling */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* Centered iframe container */
+    .content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    iframe {
+      border: none;
+      width: 100vw;
+      height: 100vh;
+      max-width: 660px;
+      max-height: 800px;
+      box-shadow: 0 0 30px #eaff00aa;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background video element -->
+  <video class="background-video" autoplay muted loop playsinline>
+    <source src="videos/scarboro.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Foreground content -->
+  <div class="content">
+    <iframe
+      src="https://open.spotify.com/embed/artist/7sMceIBxUMLOSd4ZlUDLxG?utm_source=generator"
+      width="660"
+      height="800"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
+  </div>
+
+</body>
+</html>

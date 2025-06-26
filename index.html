@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radhika.world</title>
+  <style>
+    @keyframes glitch-anim {
+      0% { clip: rect(24px, 9999px, 90px, 0); transform: skew(0.3deg); }
+      10% { clip: rect(10px, 9999px, 50px, 0); transform: skew(0.8deg); }
+      20% { clip: rect(50px, 9999px, 140px, 0); transform: skew(0.1deg); }
+      30% { clip: rect(80px, 9999px, 120px, 0); transform: skew(0.5deg); }
+      40% { clip: rect(20px, 9999px, 100px, 0); transform: skew(0.6deg); }
+      50% { clip: rect(60px, 9999px, 150px, 0); transform: skew(0.2deg); }
+      60% { clip: rect(5px, 9999px, 80px, 0); transform: skew(0.4deg); }
+      70% { clip: rect(30px, 9999px, 130px, 0); transform: skew(0.7deg); }
+      80% { clip: rect(10px, 9999px, 90px, 0); transform: skew(0.9deg); }
+      90% { clip: rect(40px, 9999px, 110px, 0); transform: skew(0.3deg); }
+      100% { clip: rect(24px, 9999px, 90px, 0); transform: skew(0.5deg); }
+    }
+
+    body {
+      background-color: black;
+      font-family: 'Courier New', Courier, monospace;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+      user-select: none;
+    }
+
+    a.glitch {
+      font-size: 6rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-transform: uppercase;
+      z-index: 10;
+      text-decoration: none;
+      text-shadow: 0 0 1px white, 0 0 2px white, 0 0 5px white;
+    }
+
+    a.glitch::before,
+    a.glitch::after {
+      content: "Radhika.world";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      font-weight: 900;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    a.glitch::before {
+      text-shadow: -2px 0 cyan;
+      animation: glitch-anim 2s infinite linear alternate-reverse;
+    }
+
+    a.glitch::after {
+      text-shadow: 2px 0 magenta;
+      animation: glitch-anim 3s infinite linear alternate-reverse;
+    }
+
+    a#enter {
+      position: absolute;
+      font-size: 2rem;
+      color: #ffffff;
+      text-decoration: none;
+      border: 2px solid #ffffff;
+      padding: 0.3rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    a#enter:hover {
+      background-color: white;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Clickable glitch text -->
+  <a href="home.html" class="glitch">Radhika.world</a>
+
+  <!-- Bouncing clickable enter button -->
+  <a href="home.html" id="enter">Click to Enter</a>
+
+  <script>
+    const enter = document.getElementById('enter');
+    let containerWidth = window.innerWidth;
+    let containerHeight = window.innerHeight;
+
+    let x = Math.random() * (containerWidth - enter.offsetWidth);
+    let y = Math.random() * (containerHeight - enter.offsetHeight);
+    let dx = 3;
+    let dy = 3;
+
+    function moveEnter() {
+      x += dx;
+      y += dy;
+
+      if (x + enter.offsetWidth >= containerWidth || x <= 0) dx = -dx;
+      if (y + enter.offsetHeight >= containerHeight || y <= 0) dy = -dy;
+
+      enter.style.left = x + 'px';
+      enter.style.top = y + 'px';
+
+      requestAnimationFrame(moveEnter);
+    }
+
+    enter.style.left = x + 'px';
+    enter.style.top = y + 'px';
+    moveEnter();
+
+    window.addEventListener('resize', () => {
+      containerWidth = window.innerWidth;
+      containerHeight = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
