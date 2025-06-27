@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Photography</title>
+  <style>
+    body {
+      background-color: #f3ddaf; 
+      margin: 0;
+      padding: 2rem;
+      font-family: 'Georgia', serif;
+    }
+
+    .gallery {
+      column-count: 3;
+      column-gap: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      break-inside: avoid;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 1024px) {
+      .gallery {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        column-count: 1;
+      }
+    }
+
+    /* Fullscreen overlay styles */
+    #fullscreenOverlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.85);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: zoom-out;
+    }
+
+    #fullscreenOverlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.5);
+      user-select: none;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gallery">
+    <img src="images/film/Kerala/1.jpg" alt="Photo 1" />
+    <img src="images/film/Kerala/2.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/3.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/4.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/5.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/6.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/7.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/8.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/9.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/10.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/11.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/12.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/13.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/14.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/15.jpg" alt="Photo 2" />
+    <img src="images/film/Kerala/16.jpg" alt="Photo 2" />
+    <!-- Add more images as needed -->
+  </div>
+
+  <!-- Fullscreen overlay -->
+  <div id="fullscreenOverlay">
+    <img src="" alt="Fullscreen View" />
+  </div>
+
+  <script>
+    const gallery = document.querySelector('.gallery');
+    const overlay = document.getElementById('fullscreenOverlay');
+    const overlayImage = overlay.querySelector('img');
+
+    gallery.addEventListener('click', (e) => {
+      if (e.target.tagName === 'IMG') {
+        overlayImage.src = e.target.src;
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+      }
+    });
+
+    overlay.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      overlayImage.src = '';
+      document.body.style.overflow = 'auto';
+    });
+
+    // Close on ESC key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.style.display === 'flex') {
+        overlay.style.display = 'none';
+        overlayImage.src = '';
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
+
+</body>
+</html>
