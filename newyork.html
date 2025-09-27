@@ -90,25 +90,7 @@
 </head>
 <body>
 
-  <div class="gallery">
-    <!-- Images 1–52 with numbers -->
-    <!-- Repeat format for each photo -->
-    <!-- Start -->
-    <div class="photo-box"><img src="images/film/NewYork/1.jpg" data-number="1"><div class="photo-number">1</div></div>
-    <div class="photo-box"><img src="images/film/NewYork/2.jpg" data-number="2"><div class="photo-number">2</div></div>
-    <div class="photo-box"><img src="images/film/NewYork/3.jpg" data-number="3"><div class="photo-number">3</div></div>
-    <div class="photo-box"><img src="images/film/NewYork/4.jpg" data-number="4"><div class="photo-number">4</div></div>
-    <div class="photo-box"><img src="images/film/NewYork/5.jpg" data-number="5"><div class="photo-number">5</div></div>
-    <div class="photo-box"><img src="images/film/NewYork/6.jpg" data-number="6"><div class="photo-number">6</div></div>
-    <div class="photo-box"><img src="images/film/NewYork/7.jpg" data-number="7"><div class="photo-number">7</div></div>
-    <div class="photo-box"><img src="images/film/NewYork/8.jpg" data-number="8"><div class="photo-number">8</div></div>
-    <div class="photo-box"><img src="images/film/NewYork/9.jpg" data-number="9"><div class="photo-number">9</div></div>
-    <div class="photo-box"><img src="images/film/NewYork/10.jpg" data-number="10"><div class="photo-number">10</div></div>
-    <!-- ...continue for all images -->
-    <!-- You can paste more blocks like above up to 52 -->
-    <!-- Example ending image -->
-    <div class="photo-box"><img src="images/film/NewYork/52.jpg" data-number="52"><div class="photo-number">52</div></div>
-  </div>
+  <div class="gallery"></div>
 
   <!-- Fullscreen overlay -->
   <div id="fullscreenOverlay">
@@ -118,6 +100,26 @@
 
   <script>
     const gallery = document.querySelector('.gallery');
+
+    // Generate photo elements 1–52
+    for (let i = 1; i <= 52; i++) {
+      const box = document.createElement('div');
+      box.className = 'photo-box';
+
+      const img = document.createElement('img');
+      img.src = `images/film/NewYork/${i}.jpg`;
+      img.dataset.number = i;
+
+      const number = document.createElement('div');
+      number.className = 'photo-number';
+      number.textContent = i;
+
+      box.appendChild(img);
+      box.appendChild(number);
+      gallery.appendChild(box);
+    }
+
+    // Fullscreen overlay functionality
     const overlay = document.getElementById('fullscreenOverlay');
     const overlayImage = overlay.querySelector('img');
     const overlayNumber = document.getElementById('fullscreenNumber');
