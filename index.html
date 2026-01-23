@@ -91,13 +91,12 @@
   <!-- Background Music -->
   <audio id="bg-music" loop preload="auto">
     <source src="videos/NuSong.wav" type="audio/wav">
-    <!-- <source src="music/NuSong.mp3" type="audio/mpeg"> -->
   </audio>
 
   <!-- Main Title -->
   <a href="home.html" class="glitch">Radhika.world</a>
 
-  <!-- Bouncing Enter Button -->
+  <!-- Enter Button -->
   <a href="home.html" id="enter">Click to Enter</a>
 
   <script>
@@ -106,7 +105,7 @@
 
     let musicStarted = false;
 
-    /* ---- START MUSIC + NAVIGATE ---- */
+    /* ---- START MUSIC + NAVIGATION ---- */
     enter.addEventListener("click", (e) => {
       e.preventDefault();
 
@@ -114,15 +113,18 @@
         music.volume = 0.5;
         music.muted = false;
 
+        // Try to play audio
         music.play()
           .then(() => {
             musicStarted = true;
+            // Small delay to make sure playback starts
             setTimeout(() => {
               window.location.href = "home.html";
-            }, 300);
+            }, 150); // 150ms enough
           })
           .catch(err => {
             console.log("Audio blocked:", err);
+            // fallback navigation
             window.location.href = "home.html";
           });
       } else {
