@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Radhika.world</title>
+
   <style>
     @keyframes glitch-anim {
       0% { clip: rect(24px, 9999px, 90px, 0); transform: skew(0.3deg); }
@@ -84,16 +85,44 @@
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Clickable glitch text -->
+  <!-- Background Music (index only) -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="videos/NuSong.wav" type="audio/wav">
+  </audio>
+
+  <!-- Main Title -->
   <a href="home.html" class="glitch">Radhika.world</a>
 
-  <!-- Bouncing clickable enter button -->
+  <!-- Bouncing Enter Button -->
   <a href="home.html" id="enter">Click to Enter</a>
 
   <script>
     const enter = document.getElementById('enter');
+    const music = document.getElementById('bg-music');
+
+    /* ---- MUSIC: start on first interaction ---- */
+    let musicStarted = false;
+
+    function startMusic() {
+      if (!musicStarted) {
+        music.volume = 0.5;
+        music.play().catch(() => {});
+        musicStarted = true;
+
+        document.removeEventListener('click', startMusic);
+        document.removeEventListener('mousemove', startMusic);
+        document.removeEventListener('keydown', startMusic);
+      }
+    }
+
+    document.addEventListener('click', startMusic);
+    document.addEventListener('mousemove', startMusic);
+    document.addEventListener('keydown', startMusic);
+
+    /* ---- BOUNCING BUTTON LOGIC ---- */
     let containerWidth = window.innerWidth;
     let containerHeight = window.innerHeight;
 
@@ -115,8 +144,6 @@
       requestAnimationFrame(moveEnter);
     }
 
-    enter.style.left = x + 'px';
-    enter.style.top = y + 'px';
     moveEnter();
 
     window.addEventListener('resize', () => {
@@ -124,5 +151,6 @@
       containerHeight = window.innerHeight;
     });
   </script>
+
 </body>
 </html>
