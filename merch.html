@@ -3,108 +3,263 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Merch - Scarboro</title>
+  <title>Merch — Radhika.world</title>
+
   <style>
+    /* ---- GLITCH ANIMATION ---- */
+    @keyframes glitch-anim {
+      0% { clip: rect(24px, 9999px, 90px, 0); transform: skew(0.3deg); }
+      10% { clip: rect(10px, 9999px, 50px, 0); transform: skew(0.8deg); }
+      20% { clip: rect(50px, 9999px, 140px, 0); transform: skew(0.1deg); }
+      30% { clip: rect(80px, 9999px, 120px, 0); transform: skew(0.5deg); }
+      40% { clip: rect(20px, 9999px, 100px, 0); transform: skew(0.6deg); }
+      50% { clip(60px, 9999px, 150px, 0); transform: skew(0.2deg); }
+      60% { clip(5px, 9999px, 80px, 0); transform: skew(0.4deg); }
+      70% { clip(30px, 9999px, 130px, 0); transform: skew(0.7deg); }
+      80% { clip(10px, 9999px, 90px, 0); transform: skew(0.9deg); }
+      90% { clip(40px, 9999px, 110px, 0); transform: skew(0.3deg); }
+      100% { clip(24px, 9999px, 90px, 0); transform: skew(0.5deg); }
+    }
+
+    /* ---- BODY ---- */
     body {
       margin: 0;
-      padding: 2rem;
-      background-color: black;
-      color: #eaff00;
-      font-family: 'Courier New', Courier, monospace;
-    }
-
-    /* Header */
-    .header {
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+      height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      gap: 1rem;
-      margin-bottom: 3rem;
-      flex-wrap: nowrap;
+      align-items: center;
+      background: black; /* landing background */
+      flex-direction: column;
     }
 
-    .radhika-logo, .scarboro-logo {
-      height: 60px; /* Increased size */
-      object-fit: contain;
-      display: block;
+    /* ---- LANDING ENTER BUTTON ---- */
+    #enter-btn {
+      font-size: 2rem;
+      color: white;
+      background: none;
+      border: 2px solid white;
+      padding: 0.5rem 2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
-    .header-x {
-      color: #eaff00;
-      font-size: 2.5rem;
-      font-weight: bold;
-      user-select: none;
-      line-height: 1;
-      margin: 0 0.5rem;
-      font-family: 'Courier New', Courier, monospace;
+    #enter-btn:hover {
+      background: white;
+      color: black;
     }
 
-    /* Merch Grid */
-    .merch-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .merch-item {
-      background-color: #111;
-      border: 2px solid #eaff00;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .merch-item:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 20px #eaff00aa;
-    }
-
-    .merch-item img {
+    /* ---- HEADER ---- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
+      height: 90px;
+      background: black; /* black top border */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      display: none; /* hide until Enter clicked */
+    }
+
+    .glitch {
+      font-family: 'Courier New', monospace;
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      color: white;
+      text-transform: uppercase;
+      position: relative;
+      white-space: nowrap;
+      text-decoration: none;
+      text-shadow: 0 0 1px white, 0 0 2px white, 0 0 5px white;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: "Radhika.world";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .glitch::before {
+      text-shadow: -2px 0 cyan;
+      animation: glitch-anim 2s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      text-shadow: 2px 0 magenta;
+      animation: glitch-anim 3s infinite linear alternate-reverse;
+    }
+
+    /* ---- MAIN MERCH ---- */
+    main {
+      padding-top: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 140px);
+      position: relative;
+      display: none; /* hide until Enter clicked */
+      background: white; /* white background */
+      width: 100%;
+      flex-direction: column;
+    }
+
+    .carousel {
+      width: 360px;
+      overflow: hidden;
+    }
+
+    .track {
+      display: flex;
+      transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .item {
+      min-width: 360px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .item video {
+      width: 100%;
+      border: 2px solid black;
       display: block;
     }
 
-    .caption {
-      text-align: center;
-      padding: 1rem;
-      font-weight: bold;
+    .item p {
+      margin-top: 12px;
+      letter-spacing: 0.15em;
       font-size: 1rem;
-      font-family: 'Georgia', serif;
+      color: black;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: black;
+      padding: 0 10px;
+      user-select: none;
+    }
+
+    .arrow:hover {
+      transform: translateY(-50%) scale(1.2);
+    }
+
+    .arrow.left {
+      left: 40px;
+    }
+
+    .arrow.right {
+      right: 40px;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <img src="images/radhika_logo.png" alt="Radhika.co.in Logo" class="radhika-logo" />
-    <div class="header-x">×</div>
-    <img src="images/scarboro_logo.png" alt="Scarboro Logo" class="scarboro-logo" />
-  </div>
+  <!-- Background Music -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="music/NuSong.wav" type="audio/wav">
+  </audio>
 
-  <!-- Merch Grid -->
-  <div class="merch-grid">
-    <!-- Merch Item Example -->
-    <div class="merch-item">
-      <img src="images/merch1.jpg" alt="Merch 1">
-      <div class="caption">Scarboro T-Shirt</div>
+  <!-- Landing Enter Button -->
+  <button id="enter-btn">Enter</button>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="glitch">Radhika.world</a>
+  </header>
+
+  <!-- MAIN MERCH CAROUSEL -->
+  <main>
+    <button class="arrow left" onclick="prev()">←</button>
+
+    <div class="carousel">
+      <div class="track" id="track">
+        <div class="item" onclick="goToItem(1)">
+          <video src="videos/merch1.mp4" muted autoplay loop playsinline></video>
+          <p>Scarboro Football Tee</p>
+        </div>
+
+        <div class="item" onclick="goToItem(2)">
+          <video src="videos/merch2.mp4" muted autoplay loop playsinline></video>
+          <p>ITEM 002</p>
+        </div>
+
+        <div class="item" onclick="goToItem(3)">
+          <video src="videos/merch3.mp4" muted autoplay loop playsinline></video>
+          <p>ITEM 003</p>
+        </div>
+      </div>
     </div>
 
-    <div class="merch-item">
-      <img src="images/merch2.jpg" alt="Merch 2">
-      <div class="caption">Limited Edition Vinyl</div>
-    </div>
+    <button class="arrow right" onclick="next()">→</button>
+  </main>
 
-    <div class="merch-item">
-      <img src="images/merch3.jpg" alt="Merch 3">
-      <div class="caption">Logo Hoodie</div>
-    </div>
+  <script>
+    const enterBtn = document.getElementById("enter-btn");
+    const header = document.querySelector("header");
+    const main = document.querySelector("main");
+    const music = document.getElementById("bg-music");
 
-    <!-- Add more merch items here -->
-  </div>
+    enterBtn.addEventListener("click", () => {
+      // Hide landing
+      enterBtn.style.display = "none";
+
+      // Show merch page
+      header.style.display = "flex";
+      main.style.display = "flex";
+      document.body.style.background = "white"; // set background white for page
+
+      // Play music
+      music.volume = 0.5;
+      music.muted = false;
+      music.play().catch(err => console.log("Audio blocked:", err));
+    });
+
+    /* ---- CAROUSEL LOGIC ---- */
+    const track = document.getElementById("track");
+    const itemWidth = 360;
+    const totalItems = document.querySelectorAll(".item").length;
+    let index = 0;
+
+    function update() {
+      track.style.transform = `translateX(-${index * itemWidth}px)`;
+    }
+
+    function next() {
+      if (index < totalItems - 1) {
+        index++;
+        update();
+      }
+    }
+
+    function prev() {
+      if (index > 0) {
+        index--;
+        update();
+      }
+    }
+
+    function goToItem(num) {
+      window.location.href = `merch-item-${num}.html`;
+    }
+  </script>
 
 </body>
 </html>
