@@ -22,14 +22,37 @@
 
     body {
       background-color: black;
-      font-family: 'Courier New', Courier, monospace;
+      font-family: 'Courier New', monospace;
       height: 100vh;
       margin: 0;
       overflow: hidden;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       user-select: none;
     }
 
+    /* ---- START BUTTON ---- */
+    #start-btn {
+      font-size: 2rem;
+      color: white;
+      background: none;
+      border: 2px solid white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 20;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    #start-btn:hover {
+      background: white;
+      color: black;
+    }
+
+    /* ---- GLITCH TITLE ---- */
     a.glitch {
       font-size: 6rem;
       font-weight: 900;
@@ -43,6 +66,7 @@
       z-index: 10;
       text-decoration: none;
       text-shadow: 0 0 1px white, 0 0 2px white, 0 0 5px white;
+      display: none; /* hidden until start */
     }
 
     a.glitch::before,
@@ -67,6 +91,7 @@
       animation: glitch-anim 3s infinite linear alternate-reverse;
     }
 
+    /* ---- ENTER BUTTON ---- */
     a#enter {
       position: absolute;
       font-size: 2rem;
@@ -77,6 +102,7 @@
       border-radius: 5px;
       cursor: pointer;
       z-index: 5;
+      display: none; /* hidden until start */
     }
 
     a#enter:hover {
@@ -93,6 +119,9 @@
     <source src="videos/NuSong.wav" type="audio/wav">
   </audio>
 
+  <!-- START BUTTON -->
+  <button id="start-btn">Start</button>
+
   <!-- Main Title -->
   <a href="home.html" class="glitch">Radhika.world</a>
 
@@ -100,61 +129,64 @@
   <a href="home.html" id="enter">Click to Enter</a>
 
   <script>
+    const startBtn = document.getElementById("start-btn");
     const enter = document.getElementById("enter");
+    const glitch = document.querySelector("a.glitch");
     const music = document.getElementById("bg-music");
 
     let musicStarted = false;
+    let dvdAnimationStarted = false;
 
-    /* ---- START MUSIC + NAVIGATION ---- */
-    enter.addEventListener("click", (e) => {
-      e.preventDefault();
+    startBtn.addEventListener("click", () => {
+      // Hide start button
+      startBtn.style.display = "none";
 
-      if (!musicStarted) {
-        music.volume = 0.5;
-        music.muted = false;
+      // Show title and enter button
+      glitch.style.display = "block";
+      enter.style.display = "block";
 
-        // Try to play audio
-        music.play()
-          .then(() => {
-            musicStarted = true;
-            // Small delay to make sure playback starts
-            setTimeout(() => {
-              window.location.href = "home.html";
-            }, 150); // 150ms enough
-          })
-          .catch(err => {
-            console.log("Audio blocked:", err);
-            // fallback navigation
-            window.location.href = "home.html";
-          });
-      } else {
-        window.location.href = "home.html";
+      // Play music
+      music.volume = 0.5;
+      music.muted = false;
+      music.play().then(() => {
+        musicStarted = true;
+      }).catch(err => console.log("Audio blocked:", err));
+
+      // Start DVD-style bouncing
+      if (!dvdAnimationStarted) {
+        dvdAnimationStarted = true;
+        startDVDBounce();
       }
     });
 
-    /* ---- BOUNCING BUTTON LOGIC ---- */
+    /* ---- DVD-STYLE MOVEMENT ---- */
     let containerWidth = window.innerWidth;
     let containerHeight = window.innerHeight;
-
     let x = Math.random() * (containerWidth - enter.offsetWidth);
     let y = Math.random() * (containerHeight - enter.offsetHeight);
     let dx = 3;
     let dy = 3;
 
-    function moveEnter() {
-      x += dx;
-      y += dy;
+    function startDVDBounce() {
+      function move() {
+        x += dx;
+        y += dy;
 
-      if (x + enter.offsetWidth >= containerWidth || x <= 0) dx = -dx;
-      if (y + enter.offsetHeight >= containerHeight || y <= 0) dy = -dy;
+        if (x + enter.offsetWidth >= containerWidth || x <= 0) dx = -dx;
+        if (y + enter.offsetHeight >= containerHeight || y <= 0) dy = -dy;
 
-      enter.style.left = x + "px";
-      enter.style.top = y + "px";
+        enter.style.left = x + "px";
+        enter.style.top = y + "px";
 
-      requestAnimationFrame(moveEnter);
+        requestAnimationFrame(move);
+      }
+      move();
     }
 
-    moveEnter();
+    enter.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.href = "home.html";
+    });
 
     window.addEventListener("resize", () => {
       containerWidth = window.innerWidth;
