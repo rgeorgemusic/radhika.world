@@ -88,9 +88,10 @@
 
 <body>
 
-  <!-- Background Music (index only) -->
+  <!-- Background Music -->
   <audio id="bg-music" loop preload="auto">
-    <source src="videos/NuSong.wav" type="audio/wav">
+    <source src="music/NuSong.wav" type="audio/wav">
+    <!-- <source src="music/NuSong.mp3" type="audio/mpeg"> -->
   </audio>
 
   <!-- Main Title -->
@@ -100,27 +101,34 @@
   <a href="home.html" id="enter">Click to Enter</a>
 
   <script>
-    const enter = document.getElementById('enter');
-    const music = document.getElementById('bg-music');
+    const enter = document.getElementById("enter");
+    const music = document.getElementById("bg-music");
 
-    /* ---- MUSIC: start on first interaction ---- */
     let musicStarted = false;
 
-    function startMusic() {
+    /* ---- START MUSIC + NAVIGATE ---- */
+    enter.addEventListener("click", (e) => {
+      e.preventDefault();
+
       if (!musicStarted) {
         music.volume = 0.5;
-        music.play().catch(() => {});
-        musicStarted = true;
+        music.muted = false;
 
-        document.removeEventListener('click', startMusic);
-        document.removeEventListener('mousemove', startMusic);
-        document.removeEventListener('keydown', startMusic);
+        music.play()
+          .then(() => {
+            musicStarted = true;
+            setTimeout(() => {
+              window.location.href = "home.html";
+            }, 300);
+          })
+          .catch(err => {
+            console.log("Audio blocked:", err);
+            window.location.href = "home.html";
+          });
+      } else {
+        window.location.href = "home.html";
       }
-    }
-
-    document.addEventListener('click', startMusic);
-    document.addEventListener('mousemove', startMusic);
-    document.addEventListener('keydown', startMusic);
+    });
 
     /* ---- BOUNCING BUTTON LOGIC ---- */
     let containerWidth = window.innerWidth;
@@ -138,15 +146,15 @@
       if (x + enter.offsetWidth >= containerWidth || x <= 0) dx = -dx;
       if (y + enter.offsetHeight >= containerHeight || y <= 0) dy = -dy;
 
-      enter.style.left = x + 'px';
-      enter.style.top = y + 'px';
+      enter.style.left = x + "px";
+      enter.style.top = y + "px";
 
       requestAnimationFrame(moveEnter);
     }
 
     moveEnter();
 
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       containerWidth = window.innerWidth;
       containerHeight = window.innerHeight;
     });
