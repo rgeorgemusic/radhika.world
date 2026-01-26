@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Radhika.World</title>
+
   <style>
     @keyframes glitch-anim {
       0% { clip: rect(24px, 9999px, 90px, 0); transform: skew(0.3deg); }
@@ -20,7 +21,7 @@
     }
 
     body {
-      background-color: #fff3d5;
+      background-color: #ffffff;
       font-family: 'Courier New', Courier, monospace;
       margin: 0;
       overflow: hidden;
@@ -28,6 +29,21 @@
       position: relative;
     }
 
+    /* Top & Bottom Bars */
+    .radhika-section {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      z-index: 10;
+      background-color: black;
+      overflow: hidden;
+      height: 80px;
+    }
+
+    .top-section { top: 0; }
+    .bottom-section { bottom: 0; }
+
+    /* Glitch Text */
     .glitch {
       font-size: 3rem;
       font-weight: 900;
@@ -35,9 +51,9 @@
       position: absolute;
       color: white;
       text-transform: uppercase;
-      text-shadow: 0 0 1px white, 0 0 2px white, 0 0 5px white;
       white-space: nowrap;
       pointer-events: none;
+      text-shadow: 0 0 1px white;
     }
 
     .glitch::before,
@@ -47,7 +63,6 @@
       left: 0;
       top: 0;
       width: 100%;
-      font-weight: 900;
       overflow: hidden;
       clip: rect(0, 0, 0, 0);
     }
@@ -62,8 +77,40 @@
       animation: glitch-anim 3s infinite linear alternate-reverse;
     }
 
-    .menu {
+    /* Center Video (No Border / No Shadow) */
+    .video-container {
       position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 20;
+      width: 70%;
+      max-width: 900px;
+      pointer-events: none;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      background: transparent;
+      display: block;
+    }
+
+    /* Menu */
+    .menu-container {
+      position: absolute;
+      bottom: 100px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      z-index: 30;
+    }
+
+    .menu {
       font-size: 1.5rem;
       font-weight: bold;
       color: #222;
@@ -72,9 +119,7 @@
       padding: 0.6rem 1.2rem;
       border: 2px solid #444;
       border-radius: 8px;
-      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
-      z-index: 10;
     }
 
     .menu:hover {
@@ -83,37 +128,35 @@
       text-shadow: 0 0 5px white, 0 0 10px cyan, 0 0 10px magenta;
       border-color: #fff;
     }
-
-    #music {
-      top: 25%;
-      left: 10%;
-    }
-
-    #photo {
-      top: 50%;
-      right: 15%;
-    }
-
-    #merch {
-      bottom: 15%;
-      left: 40%;
-    }
-
-    #about {
-      top: 10%;
-      right: 40%; /* Shifted further left */
-    }
   </style>
 </head>
+
 <body>
 
-  <div class="glitch" id="textTop">Radhika.World</div>
-  <div class="glitch" id="textBottom">Radhika.World</div>
+  <!-- Top Bar -->
+  <div class="radhika-section top-section">
+    <div class="glitch" id="textTop">Radhika.World</div>
+  </div>
 
-  <a href="music.html" class="menu" id="music">MUSIC</a>
-  <a href="photography.html" class="menu" id="photo">FILM PHOTOGRAPHY</a>
-  <a href="merch.html" class="menu" id="merch">MERCH</a>
-  <a href="gallery.html" class="menu" id="about">GALLERY</a>
+  <!-- Center Video -->
+  <div class="video-container">
+    <video autoplay muted loop playsinline>
+      <source src="videos/Fran.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- Menu -->
+  <div class="menu-container">
+    <a href="music.html" class="menu">MUSIC</a>
+    <a href="photography.html" class="menu">FILM PHOTOGRAPHY</a>
+    <a href="merch.html" class="menu">MERCH</a>
+    <a href="gallery.html" class="menu">GALLERY</a>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="radhika-section bottom-section">
+    <div class="glitch" id="textBottom">Radhika.World</div>
+  </div>
 
   <script>
     const topText = document.getElementById('textTop');
@@ -137,7 +180,7 @@
       topText.style.top = padding + 'px';
       topText.style.left = xTop + 'px';
 
-      bottomText.style.bottom = padding + 'px';
+      bottomText.style.top = padding + 'px';
       bottomText.style.left = xBottom + 'px';
 
       requestAnimationFrame(animate);
